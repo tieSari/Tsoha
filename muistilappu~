@@ -14,3 +14,14 @@ available from /home/sariraut/tomcat/logs
 
 Please, remember to stop (with stop-tomcat) tomcat instances with are
 not used.
+
+esimerkki;
+http://t-sariraut.users.cs.helsinki.fi/tsoha/esim.html
+
+scp /home/sariraut/Documents/tsoha/dist/SporttiFoorumi.war sariraut@users.cs.helsinki.fi:~/tomcat/webapps/
+
+oma sovellus:
+http://t-sariraut.users.cs.helsinki.fi/SporttiFoorumi/
+
+esittelysivu:
+scp /home/sariraut/Documents/tsoha/esittelysivu.html sariraut@users.cs.helsinki.fi:~/tomcat/webapps/SporttiFoorumi
