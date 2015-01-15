@@ -1,0 +1,16 @@
+Tomcat environment has been setup for you. Now you can run 'start-tomcat'.
+sariraut@users:~$ cp -r /home/consuegr/tomcat/webapps/tsoha ~/tomcat/webapps
+sariraut@users:~$ start-tomcat
+Using CATALINA_BASE:   /home/sariraut/tomcat
+Using CATALINA_HOME:   /usr/share/tomcat6
+Using CATALINA_TMPDIR: /home/sariraut/tomcat/temp
+Using JRE_HOME:        /usr/lib/jvm/java-6-sun
+Using CLASSPATH:       /usr/share/tomcat6/bin/bootstrap.jar
+Tomcat has been started. It should be visible through URL
+http://t-sariraut.users.cs.helsinki.fi/
+
+If you have problems, your tomcat log files are
+available from /home/sariraut/tomcat/logs
+
+Please, remember to stop (with stop-tomcat) tomcat instances with are
+not used.
