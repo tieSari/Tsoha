@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/bootstrap-theme.css" rel="stylesheet">
+        <link href="../css/main.css" rel="stylesheet">
+        <title>Aiheryhmien ylläpito</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="panel panel-default otsikko">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-6">
+                        <a href="etusivu.html"> <h1>SporttiFoorumi</h1></a>
+                    </div>
+                    <div class="col-md-2">
+                        (Ylläpito)
+                        <ul>
+                            <li><a class="pieni" href="jasenasiat.html">Jäsenasiat</a></li>
+                            <li><a class="pieni" href="yllapito.html">Aiheiden muokkaus</a></li>
+                            <li><a class="pieni" href="etusivu.html">Kirjoitusten poisto</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2">
+                        <a> Kirjaudu ulos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading"><h2>Aiheryhmän lisäys</h2> </div>
+            <div class="panel-body">
+                Uusi aihe: <input type="text">
+                <div >
+                    <button type="button" class="btn btn-default">Lisää</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading"><h2>Aiheryhmien muokkaus</h2> </div>
+            <div class="panel-body">
+                <table>
+                    <tr>
+                        <td>
+                            <p>
+                                Valitse muokattava ryhmä:
+                                <input list="aiheet">
+                                <datalist id="aiheet">
+                                    <option value="Juoksu">
+                                    <option value="Jujutsu">
+                                    <option value="Karate">
+                                    <option value="Kirpputori">
+                                    <option value="Luistelu">                    
+                                    <option value="Soutu">
+                                    <option value="Suunnistus">
+                                </datalist>
+                            </p>
+                        </td>
+                        <td>
+                               Muokkaa: <input type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p>
+                                Lisää ryhmään käyttäjiä:
+                                <input list="kayttajat">
+                                <datalist id="kayttajat">
+                                    <option value="Aakio Vesa"></option><input type="checkbox">
+                                    <option value="Airola Ville"></option><input type="checkbox">
+                                    <option value="Herranen Kaisa">
+                                    <option value="Korppi Juuso">
+                                    <option value="Nevala Raija">                    
+                                    <option value="Reko Riina">
+                                    <option value="Suursuo Yrjö">
+                                </datalist>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="button" class="btn btn-default">Tallenna muutokset</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

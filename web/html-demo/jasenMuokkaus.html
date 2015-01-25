@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/bootstrap-theme.css" rel="stylesheet">
+        <link href="../css/main.css" rel="stylesheet">
+        <title>Jäsenasiat</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="panel panel-default otsikko">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-6">
+                        <a href="etusivu.html"> <h1>SporttiFoorumi</h1></a>
+                    </div>
+                    <div class="col-md-2">
+                        (Ylläpito)
+                        <ul>
+                            <li><a class="pieni" href="yllapito.html">Jäsenasiat</a></li>
+                            <li><a class="pieni" href="yllapito.html">Aiheiden muokkaus</a></li>
+                            <li><a class="pieni" href="etusivu.html">Kirjoitusten poisto</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2">
+                        <a> Kirjaudu ulos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li><a href="jasenasiat.html">Käyttäjän lisäys</a></li>
+            <li class="active"><a href="#">Käyttäjätietojen muokkaus</a></li>
+        </ul>
+        <div class="panel panel-info">
+            <div class="panel-heading"><h2>Käyttäjätietojen muokkaus</h2> </div>
+            <div class="panel-body">
+                <table>
+                    <tr>
+                        <td>
+                            <p>
+                                Valitse muokattava käyttäjä:
+                                <input list="kayttajat">
+                                <datalist id="kayttajat">
+                                    <option value="Aakio Vesa"></option><input type="checkbox">
+                                    <option value="Airola Ville"></option><input type="checkbox">
+                                    <option value="Herranen Kaisa">
+                                    <option value="Korppi Juuso">
+                                    <option value="Nevala Raija">                    
+                                    <option value="Reko Riina">
+                                    <option value="Suursuo Yrjö">
+                                </datalist>
+
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">Käyttäjän tiedot </div>
+            <div class="panel-body">
+                <div >
+                    <form>
+                        <table>
+                            <tr>
+
+                                <td>Etunimi: </td><td><input type="text"></td>
+
+                            </tr>
+                            <tr>
+                                <td>Sukunimi: </td><td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>Käyttäjätunnus:</td><td> <input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>Salasana: </td><td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Lisää ryhmät:
+                                </td>
+                                <td>
+                                    <input list="aiheet">
+                                    <datalist id="aiheet">
+                                        <option value="Juoksu">
+                                        <option value="Jujutsu">
+                                        <option value="Karate">
+                                        <option value="Kirpputori">
+                                        <option value="Luistelu">                    
+                                        <option value="Soutu">
+                                        <option value="Suunnistus">
+                                    </datalist>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="button" class="btn btn-default">Päivitä tiedot</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-default">Poista käyttäjä</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

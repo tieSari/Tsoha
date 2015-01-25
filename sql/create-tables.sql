@@ -1,0 +1,38 @@
+CREATE TABLE RYHMA(
+tunnus SERIAL PRIMARY KEY,
+nimi VARCHAR(50) NOT NULL,
+kuvaus  VARCHAR(250)
+);
+
+CREATE TABLE JASEN(
+tunnus SERIAL PRIMARY KEY,
+etunimi VARCHAR(30) NOT NULL,
+sukunimi VARCHAR(50) NOT NULL,
+kayttajatunnus VARCHAR(50) NOT NULL,
+salasana VARCHAR(15) NOT NULL,
+Rooli VARCHAR(30) NOT NULL
+);
+
+
+CREATE TABLE VIESTI(
+tunnus SERIAL PRIMARY KEY,
+otsikko VARCHAR(50) NOT NULL,
+teksti VARCHAR(250) NOT NULL,
+paaviesti INTEGER,
+ryhma INTEGER NOT NULL REFERENCES ryhma(tunnus) ON UPDATE cascade,
+kirjoituspvm timestamp DEFAULT current_timestamp NOT NULL,
+kirjoittaja INTEGER NOT NULL
+);
+
+
+CREATE TABLE RYHMANJASENET(
+ryhmatunnus INTEGER NOT NULL REFERENCES ryhma(tunnus) ON DELETE cascade ON UPDATE cascade,
+jasentunnus INTEGER NOT NULL REFERENCES jasen(tunnus) ON DELETE cascade ON UPDATE cascade
+);
+
+
+CREATE TABLE JASENENLUKEMATVIESTIT(
+jasentunnus INTEGER NOT NULL REFERENCES jasen(tunnus) ON DELETE cascade ON UPDATE cascade,
+viestitunnus INTEGER NOT NULL REFERENCES viesti(tunnus) ON DELETE cascade ON UPDATE cascade
+);
+
