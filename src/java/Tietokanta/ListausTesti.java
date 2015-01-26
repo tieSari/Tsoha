@@ -7,12 +7,7 @@ package Tietokanta;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,7 +39,7 @@ public class ListausTesti extends HttpServlet {
         List<Kayttaja> kayttajat = Kayttaja.getKayttajat();
 
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        PrintWriter out = response.getWriter();
             out.println("<html>");
             out.println("<head><title>Servlet TestiServlet</title></head>");
             out.println("<body>");
@@ -56,7 +51,7 @@ public class ListausTesti extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
-    }
+   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

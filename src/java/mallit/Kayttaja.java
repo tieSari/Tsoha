@@ -55,7 +55,7 @@ public static List<Kayttaja> getKayttajat() throws SQLException {
   PreparedStatement kysely = yhteys.prepareStatement(sql);
   ResultSet tulokset = kysely.executeQuery();
 
-  ArrayList<Kayttaja> kayttajat = new ArrayList<>();
+  ArrayList<Kayttaja> kayttajat = new ArrayList();
   while (tulokset.next()) {
     //Luodaan tuloksia vastaava olio ja palautetaan olio:
     Kayttaja k = new Kayttaja();
