@@ -2,11 +2,35 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <servlet>
         <servlet-name>ListausTesti</servlet-name>
-        <servlet-class>Tietokanta.ListausTesti</servlet-class>
+        <servlet-class>SporttiFoorumi.Servletit.Listaus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Kirjautuminen</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.Kirjautuminen</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GeneralServlet</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.GeneralServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NaytaLoginSivu</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.NaytaLoginSivu</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ListausTesti</servlet-name>
         <url-pattern>/ListausTesti</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Kirjautuminen</servlet-name>
+        <url-pattern>/Kirjautuminen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GeneralServlet</servlet-name>
+        <url-pattern>/GeneralServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NaytaLoginSivu</servlet-name>
+        <url-pattern>/NaytaLoginSivu</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -14,6 +38,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>kirjautuminen.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

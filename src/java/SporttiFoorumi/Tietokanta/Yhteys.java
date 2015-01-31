@@ -1,4 +1,4 @@
-package Tietokanta;
+package SporttiFoorumi.Tietokanta;
 
 import java.sql.Connection;
 import java.sql.SQLException;
