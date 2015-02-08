@@ -25,6 +25,7 @@ public class Kirjautuminen extends GeneralServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -55,7 +56,7 @@ public class Kirjautuminen extends GeneralServlet {
             if (jasen != null) {
                 session.setAttribute("kirjautunut", jasen);
                 request.setAttribute("kirjautunut", jasen);
-                response.sendRedirect("ListausTesti");
+                response.sendRedirect("Listaus");
             } else {
                 asetaVirhe("Kirjautuminen epäonnistui! Antamasi tunnus tai salasana on väärä.", request);
                 naytaJSP("kirjautuminen.jsp", request, response);

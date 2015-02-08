@@ -5,6 +5,7 @@
  */
 package SporttiFoorumi.Servletit;
 
+import SporttiFoorumi.mallit.Kayttaja;
 import SporttiFoorumi.mallit.Ryhma;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,14 +17,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author sariraut
  */
-public class Listaus extends GeneralServlet {
+public class HaeKayttajanTiedot extends GeneralServlet {
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            request.setAttribute("ryhmat", Ryhma.getRyhmatJaViestit());
-            naytaJSP("index.jsp", request,response);
+            int id = Integer.parseInt(request.getParameter("jasen"));
+            request.setAttribute("kayttaja", Kayttaja.getKayttaja(id));
+            request.setAttribute("ryhmat", Ryhma.getRyhmat());
+            naytaJSP("jasenenTiedot.jsp", request,response);
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

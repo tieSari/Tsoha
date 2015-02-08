@@ -16,14 +16,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author sariraut
  */
-public class Listaus extends GeneralServlet {
+public class UusiViestiketju extends GeneralServlet {
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            request.setAttribute("ryhmat", Ryhma.getRyhmatJaViestit());
-            naytaJSP("index.jsp", request,response);
+            request.setAttribute("ryhmat", Ryhma.getRyhmat());
+            naytaJSP("uusiViestiKetju.jsp", request,response);
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

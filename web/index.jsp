@@ -1,71 +1,46 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<t:pohja pageTitle="Etusivu" rooli="${session.kirjautunut.rooli}">
-        <h1>Ajankohtaista</h1>
-        <table class="table table-striped">
-            <thead>
+<t:pohja pageTitle="Etusivu" rooli="${sessionScope.kirjautunut.rooli}">
+    <h3>Ajankohtaista</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Aihe</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="ryhma" items="${ryhmat}">
                 <tr>
-                    <th>Aihe</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><h3> Juoksu</h3></td><td><a href="uusiViestiketju.html">Aloita uusi keskustelu </a> <span class="glyphicon glyphicon-plus"></span></td>
-                </tr>
-                <tr>
-                    <td>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>(poista ketju <input type="checkbox">) <a href="keskustelu.html"> Onko yhteislenkille lähtijöitä?</a></th> 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Saku 20.01.2015 10:25</td>
-                                </tr>
+                    <td><h3><div class="ryhma"> ${ryhma.nimi}</div></h3></td>
+                    <td><a href="./UusiViestiketju">Aloita uusi keskustelu </a> 
+                        <span class="glyphicon glyphicon-plus"></span></td>
+                </tr> 
+                <c:forEach var="viesti" items="${ryhma.viestit}">
+                    <tr>
+                        <td>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                        <a href="keskustelu.html"> ${viesti.otsikko}</a>
+                                        <c:if test="${(sessionScope.kirjautunut.rooli) == 'yllapitaja'
+                                                      && (viesti.paaviesti==0)}">
+                                              <td> <a href="./PoistaViestiketju?tunnus=${viesti.tunnus}">poista ketju</a> </td> 
+                                        </c:if>
+                                        </th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>${viesti.kirjoittajaNimi}&Tab; ${viesti.kirjoituspvm}</td>
+                                    </tr>
 
-                            </tbody>
-                        </table>
-                </tr>
-                <tr>
-                    <td> <h3>Luistelu</h3></td><td><a href="uusiViestiketju.html">Aloita uusi keskustelu </a> <span class="glyphicon glyphicon-plus"></span></td>
-                </tr>
-                <tr>
-                    <td>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>(poista ketju <input type="checkbox">) <a>Retki Espoonlahden jäille</a></th> 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Kalle Piirainen 19.01.2015 15:22</td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                </tr>
-                <tr>
-                    <td> <h3>Suunnistus</h3></td><td><a href="uusiViestiketju.html">Aloita uusi keskustelu </a><span class="glyphicon glyphicon-plus"></span></td>
-                </tr>
-                <tr>
-                    <td>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>(poista ketju <input type="checkbox">) <a> Jukolaan ensi kesänä</a></th> 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Mirva 25.01.2015 19:25</td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                </tr>
-            </tbody>
-        </table>
+                                </tbody>
+                            </table>
+                    </tr>
+                </c:forEach>
+            </c:forEach>
+        </tbody>
+    </table>
 </t:pohja>

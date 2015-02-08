@@ -16,17 +16,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author sariraut
  */
-public class Listaus extends GeneralServlet {
+public class Toteuttamatta extends GeneralServlet {
 
-    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            request.setAttribute("ryhmat", Ryhma.getRyhmatJaViestit());
-            naytaJSP("index.jsp", request,response);
 
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+            naytaJSP("ilmoitusSivu.jsp", request,response);
+
     }
 }

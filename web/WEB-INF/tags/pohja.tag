@@ -22,19 +22,19 @@
                     <div class="col-md-6">
                         <a> <h1>SporttiFoorumi</h1></a>
                     </div>
-                    <c:if test="${rooli == 'yllapitaja'}">
+                    <c:if test="${sessionScope.kirjautunut.rooli == 'yllapitaja'}">
 
                         <div class="col-md-2">
-                            (Ylläpito)
+                            Ylläpito
                             <ul> 
-                                <li><a class="pieni" href="jasenasiat.html">Jäsenasiat</a></li>
-                                <li><a class="pieni" href="yllapito.html">Aiheiden muokkaus</a></li>
-                                <li><a class="pieni" href="etusivu.html">Kirjoitusten poisto</a></li>
+                                <li><a class="pieni" href="./HaeKayttajat">Jäsenasiat</a></li>
+                                <li><a class="pieni" href="./Toteuttamatta">Aiheiden muokkaus</a></li>
+                                <li><a class="pieni" href="index.jsp">Kirjoitusten poisto</a></li>
                             </ul>
                         </div>
                     </c:if>
                     <div class="col-md-2">
-                        <a> Kirjaudu ulos</a>
+                        <a href="./Toteuttamatta"> Kirjaudu ulos</a>
                     </div>
                 </div>
             </div>
@@ -43,6 +43,9 @@
         <div class="container">
             <c:if test="${virheViesti != null}">
                 <div class="alert alert-danger">${virheViesti}</div>
+            </c:if>
+            <c:if test="${infoViesti != null}">
+                <div class="alert alert-info">${infoViesti}</div>
             </c:if>
             <jsp:doBody/>
         </div>

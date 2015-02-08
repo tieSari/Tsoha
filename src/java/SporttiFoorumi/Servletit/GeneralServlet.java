@@ -42,6 +42,10 @@ public class GeneralServlet extends HttpServlet {
     public void asetaVirhe(String virhe, HttpServletRequest request) {
         request.setAttribute("virheViesti", virhe);
     }
+    
+        public void asetaInfo(String ilmoitus, HttpServletRequest request) {
+        request.setAttribute("infoViesti", ilmoitus);
+    }
 
     public Kayttaja Kirjautunut(Kayttaja kayttaja, HttpServletRequest request) {
         HttpSession session = request.getSession();

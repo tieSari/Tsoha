@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <servlet>
-        <servlet-name>ListausTesti</servlet-name>
+        <servlet-name>Listaus</servlet-name>
         <servlet-class>SporttiFoorumi.Servletit.Listaus</servlet-class>
     </servlet>
     <servlet>
@@ -16,9 +16,37 @@
         <servlet-name>NaytaLoginSivu</servlet-name>
         <servlet-class>SporttiFoorumi.Servletit.NaytaLoginSivu</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UusiViestiketju</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.UusiViestiketju</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TallennaViesti</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.TallennaViesti</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PoistaViestiketju</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.PoistaViestiketju</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HaeKayttajat</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.HaeKayttajat</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PaivitaKayttaja</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.PaivitaKayttaja</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HaeKayttajanTiedot</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.HaeKayttajanTiedot</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Toteuttamatta</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.Toteuttamatta</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>ListausTesti</servlet-name>
-        <url-pattern>/ListausTesti</url-pattern>
+        <servlet-name>Listaus</servlet-name>
+        <url-pattern>/Listaus</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Kirjautuminen</servlet-name>
@@ -31,6 +59,34 @@
     <servlet-mapping>
         <servlet-name>NaytaLoginSivu</servlet-name>
         <url-pattern>/NaytaLoginSivu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UusiViestiketju</servlet-name>
+        <url-pattern>/UusiViestiketju</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TallennaViesti</servlet-name>
+        <url-pattern>/TallennaViesti</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PoistaViestiketju</servlet-name>
+        <url-pattern>/PoistaViestiketju</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HaeKayttajat</servlet-name>
+        <url-pattern>/HaeKayttajat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaivitaKayttaja</servlet-name>
+        <url-pattern>/PaivitaKayttaja</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HaeKayttajanTiedot</servlet-name>
+        <url-pattern>/HaeKayttajanTiedot</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Toteuttamatta</servlet-name>
+        <url-pattern>/Toteuttamatta</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
