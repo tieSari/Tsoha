@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * muut servletit periytetään tästä luokasta
+ * luokka sisältää yhteisiä apumetodeita
+ * sekä toteuttaa HTTPServletiltä perityt metodit
  */
 package SporttiFoorumi.Servletit;
 
@@ -47,7 +47,7 @@ public class GeneralServlet extends HttpServlet {
         request.setAttribute("infoViesti", ilmoitus);
     }
 
-    public Kayttaja Kirjautunut(Kayttaja kayttaja, HttpServletRequest request) {
+    public Kayttaja Kirjautunut(HttpServletRequest request) {
         HttpSession session = request.getSession();
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
         return (kirjautunut);

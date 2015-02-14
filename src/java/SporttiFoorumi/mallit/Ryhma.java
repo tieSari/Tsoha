@@ -57,13 +57,12 @@ public class Ryhma {
         this.viestit = viestit;
     }
 
-    public static List<Ryhma> getRyhmatJaViestit() throws SQLException {
+    public static List<Ryhma> getRyhmatJaViestit(int kayttajaId) throws SQLException {
        
-        ArrayList<Ryhma> ryhmat = new ArrayList();
-        ryhmat = getRyhmat();
+        ArrayList<Ryhma> ryhmat = getRyhmat();
         for(Ryhma ryhma:ryhmat)
         {
-            ryhma.setViestit(Viesti.etsiRyhmanViestit(ryhma.getTunnus()));
+            ryhma.setViestit(Viesti.etsiRyhmanViestit(ryhma.getTunnus(),kayttajaId));
         }
         return ryhmat;
 

@@ -20,7 +20,7 @@
                     <div class="col-md-2">
                     </div>
                     <div class="col-md-6">
-                        <a> <h1>SporttiFoorumi</h1></a>
+                        <a href="./Listaus"> <h1><span class="glyphicon glyphicon-queen">&MediumSpace;SporttiFoorumi&MediumSpace;<span class="glyphicon glyphicon-queen"></h1></a>
                     </div>
                     <c:if test="${sessionScope.kirjautunut.rooli == 'yllapitaja'}">
 
@@ -29,12 +29,11 @@
                             <ul> 
                                 <li><a class="pieni" href="./HaeKayttajat">Jäsenasiat</a></li>
                                 <li><a class="pieni" href="./Toteuttamatta">Aiheiden muokkaus</a></li>
-                                <li><a class="pieni" href="index.jsp">Kirjoitusten poisto</a></li>
                             </ul>
                         </div>
                     </c:if>
                     <div class="col-md-2">
-                        <a href="./Toteuttamatta"> Kirjaudu ulos</a>
+                        <a href="./KirjauduUlos"> Kirjaudu ulos</a>
                     </div>
                 </div>
             </div>

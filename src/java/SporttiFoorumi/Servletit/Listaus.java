@@ -1,13 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Luokka toimii etusivun listausnäkymän controllerina,
+ * kutsuu Ryhma- malliluokan tietokantakyselymetodia, joka palauttaa asiaryhmät
+ * ja niihin liittyvät viestit.
  */
 package SporttiFoorumi.Servletit;
 
+import SporttiFoorumi.mallit.Kayttaja;
 import SporttiFoorumi.mallit.Ryhma;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,11 +25,17 @@ public class Listaus extends GeneralServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            request.setAttribute("ryhmat", Ryhma.getRyhmatJaViestit());
-            naytaJSP("index.jsp", request,response);
+            Kayttaja kirjautunut = Kirjautunut(request);
+            if (kirjautunut == null) {
+                asetaVirhe("Kirjaudu palveluun, jos haluat lukea viestejä.", request);
+                naytaJSP("kirjautuminen.jsp", request, response);
+                return;
+            }
+            request.setAttribute("ryhmat", Ryhma.getRyhmatJaViestit(kirjautunut.getId()));
+            naytaJSP("index.jsp", request, response);
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            Logger.getLogger(Listaus.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 }

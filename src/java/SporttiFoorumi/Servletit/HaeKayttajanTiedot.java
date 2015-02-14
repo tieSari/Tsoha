@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Luokka toimii jäsenen tiedot esittävän näkymän controllerina
+ * kutsuu Ryhma- ja Kayttaja-malliluokkien tietokantakyselymetodeita
+ * 
  */
 package SporttiFoorumi.Servletit;
 
@@ -9,6 +9,8 @@ import SporttiFoorumi.mallit.Kayttaja;
 import SporttiFoorumi.mallit.Ryhma;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +31,7 @@ public class HaeKayttajanTiedot extends GeneralServlet {
             naytaJSP("jasenenTiedot.jsp", request,response);
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            Logger.getLogger(HaeKayttajanTiedot.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 }

@@ -36,20 +36,27 @@
     </ul>
 
     <h2>Työn aihe</h2>
-    Laita tähän aihekuvaus tai 
     <a href="http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Keskustelufoorumi.html">
       linkki valmiiseen aiheeseen</a>.
 
     
     <h2>Kirjautumistunnuksia testausta varten</h2>
-
-    <p>Testitunnnuksia</p>
     <p>
-    Pääkäyttäjän tunnus ja salasana:<br /> suvis@helsinki.fi, suvis8uvi8 (pääkäyttäjän valikko ei toimi vielä)
+    Pääkäyttäjän tunnus ja salasana:<br /> suvis@helsinki.fi, suvis8uvi8
     </p>
     <p>
     Tavallisen käyttäjän tunnus ja salasana: kalle.aalto@hkl.fi, kops34rj
 	</p>
-  
+  <h3>Viikolla 5 on toteutettuna seuraavat toiminnot:</H3>
+    <ul>
+        <li>etusivulta voi lisätä viestiketjun </li>
+        <li>etusivun listauksessa on merkitty huutomerkillä ketjut, joissa viestejä, joita kirjautunut käyttäjä ei ole lukenut </li>
+        <li>etusivun viestiketjun aloittajan ja viimeisimmän vastaajan tiedot näkyvät</li>
+        <li>ylläpitäjä voi poistaa etusivulta viestiketjun</li>
+        <li>ylläpitäjä voi muokata käyttäjän tietoja (yläpalkin jäsenasiat -linkki)</li>
+        <li> etusivulta pääsee lukemaan viestiketjua ja siihen voi lisätä viestin </li>
+        <li> ylläpitäjä voi poistaa samalta sivulta yksittäisen viestin </li>
+        <li>uloskirjautuminen on toteutettu</li>
+    </ul>
   </body>
 </html>

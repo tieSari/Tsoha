@@ -1,3 +1,9 @@
+/*
+ * Luokka vastaa kirjautumistoiminnoista.
+ * Jos kirjautuminen onnistui, kutsuu etusivun näyttävää Listaus-servlettiä.
+ * Kirjautumisen epäonnistuessa näyttää uudelleen kirjautumissivun ja virheviestin.
+ */
+
 package SporttiFoorumi.Servletit;
 
 import SporttiFoorumi.mallit.Kayttaja;

@@ -25,11 +25,12 @@
             <div class="panel-heading">Kirjoita viesti</div>
             <div class="panel-body">
                 <div class="row">
+                    <input hidden="true" name="paaviesti" value="0">
                     Otsikko: <input type="text" name="otsikko">
                 </div>
                 <p></p>
                 <div class="row">
-                    <textarea cols="60" rows="10" name="teksti"></textarea>
+                    <textarea cols="60" rows="8" name="teksti"></textarea>
                 </div>
                 <div >
                     <button type="submit" class="btn btn-default">Lähetä</button>

@@ -18,17 +18,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author sariraut
  */
-public class UusiViestiketju extends GeneralServlet {
+public class KirjauduUlos extends GeneralServlet {
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            request.setAttribute("ryhmat", Ryhma.getRyhmat());
-            naytaJSP("uusiViestiKetju.jsp", request,response);
-
-        } catch (SQLException e) {
-            Logger.getLogger(UusiViestiketju.class.getName()).log(Level.SEVERE, null, e);
-        }
+        request.getSession().removeAttribute("kirjautunut");
+        naytaJSP("kirjautuminen.jsp", request,response);
     }
 }

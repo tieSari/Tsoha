@@ -27,12 +27,14 @@ kirjoittaja INTEGER NOT NULL
 
 CREATE TABLE RYHMANJASENET(
 ryhmatunnus INTEGER NOT NULL REFERENCES ryhma(tunnus) ON DELETE cascade ON UPDATE cascade,
-jasentunnus INTEGER NOT NULL REFERENCES jasen(tunnus) ON DELETE cascade ON UPDATE cascade
+jasentunnus INTEGER NOT NULL REFERENCES jasen(tunnus) ON DELETE cascade ON UPDATE cascade,
+PRIMARY KEY (ryhmatunnus, jasentunnus)
 );
 
 
 CREATE TABLE JASENENLUKEMATVIESTIT(
 jasentunnus INTEGER NOT NULL REFERENCES jasen(tunnus) ON DELETE cascade ON UPDATE cascade,
-viestitunnus INTEGER NOT NULL REFERENCES viesti(tunnus) ON DELETE cascade ON UPDATE cascade
+viestitunnus INTEGER NOT NULL REFERENCES viesti(tunnus) ON DELETE cascade ON UPDATE cascade,
+PRIMARY KEY (jasentunnus, viestitunnus)
 );
 

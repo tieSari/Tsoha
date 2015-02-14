@@ -1,8 +1,8 @@
 /*
-* Luokan avulla poistetaan viestiketju kannasta.
-* Kutsutaan etusivun listaussivulta, jonne myös  palataan poiston jälkeen
-* 
-*/
+ * Luokan avulla poistetaan viesti kannasta.
+ * Kutsutaan viestiketjun sivulta keskustelu.jsp, jonne myös  palataan poiston jälkeen
+ * 
+ */
 package SporttiFoorumi.Servletit;
 
 import SporttiFoorumi.mallit.Kayttaja;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author sariraut
  */
-public class PoistaViestiketju extends GeneralServlet {
+public class PoistaViesti extends GeneralServlet {
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -29,12 +29,15 @@ public class PoistaViestiketju extends GeneralServlet {
         try {
             Kayttaja kirjautunut = Kirjautunut(request);
             if (kirjautunut == null || !kirjautunut.getRooli().equals("yllapitaja")) {
-                asetaVirhe("Kirjaudu palveluun ylläpitäjänä, jos haluat poistaa viestiketjun.", request);
+                asetaVirhe("Kirjaudu palveluun ylläpitäjänä, jos haluat poistaa viestin.", request);
                 naytaJSP("kirjautuminen.jsp", request, response);
                 return;
             }
-            Viesti.poistaViestiketju(Integer.parseInt(request.getParameter("tunnus")));
-            response.sendRedirect("Listaus");
+            Viesti.poistaViesti(Integer.parseInt(request.getParameter("tunnus")));
+            HttpSession session = request.getSession();
+            //välitetään keskusteluketjun pääviestin tunnus sessiossa
+            session.setAttribute("tunnus", Integer.parseInt(request.getParameter("paaviesti")));
+            response.sendRedirect("Keskustelu");
 
         } catch (SQLException e) {
             Logger.getLogger(PoistaViestiketju.class.getName()).log(Level.SEVERE, null, e);

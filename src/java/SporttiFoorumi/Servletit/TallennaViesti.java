@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Luokka viestiketjun näyttävän näkymän controllerina, jonka kautta voi 
+ * lisätä ketjuun uuden viestin. Uutta viestiketjua luotaessa luokkaa kutsutaan myös.
+ * 
  */
 package SporttiFoorumi.Servletit;
 
@@ -9,6 +9,8 @@ import SporttiFoorumi.mallit.Kayttaja;
 import SporttiFoorumi.mallit.Viesti;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,8 +27,7 @@ public class TallennaViesti extends GeneralServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            HttpSession session = request.getSession();
-            Kayttaja kirjautunut = (Kayttaja) (session.getAttribute("kirjautunut"));
+            Kayttaja kirjautunut = Kirjautunut(request);
             if (kirjautunut == null) {
                 asetaVirhe("Kirjaudu palveluun, jos haluat lisätä viestin.", request);
                 naytaJSP("kirjautuminen.jsp", request, response);
@@ -37,16 +38,22 @@ public class TallennaViesti extends GeneralServlet {
             viesti.setTeksti(request.getParameter("teksti"));
             viesti.setKirjoittaja(kirjautunut.getId());
             viesti.setRyhma(Integer.parseInt(request.getParameter("ryhma")));
+            viesti.setPaaviesti(Integer.parseInt(request.getParameter("paaviesti")));
             viesti.lisaaViestiKantaan();
-            
-            response.sendRedirect("Listaus");
+  //jos viesti ei ole ketjun aloitusviesti, siirrytään keskusteluun, johon viesti
+  //on lisätty. Muussa tapauksessa siirrytään etusivun listaukseen.
+            if (viesti.getPaaviesti() != 0) {
+                HttpSession session = request.getSession();
+                session.setAttribute("tunnus", viesti.getPaaviesti());
+                response.sendRedirect("Keskustelu");
+            } else {
+                response.sendRedirect("Listaus");
+            }
 
-        } catch (SQLException e ) {
-            System.out.println(e.getMessage());
-        }
-        catch (NamingException e ) {
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            Logger.getLogger(TallennaViesti.class.getName()).log(Level.SEVERE, null, e);
+        } catch (NamingException e) {
+            Logger.getLogger(TallennaViesti.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 }
-

@@ -44,6 +44,18 @@
         <servlet-name>Toteuttamatta</servlet-name>
         <servlet-class>SporttiFoorumi.Servletit.Toteuttamatta</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Keskustelu</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.Keskustelu</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>KirjauduUlos</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.KirjauduUlos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PoistaViesti</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.PoistaViesti</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Listaus</servlet-name>
         <url-pattern>/Listaus</url-pattern>
@@ -87,6 +99,18 @@
     <servlet-mapping>
         <servlet-name>Toteuttamatta</servlet-name>
         <url-pattern>/Toteuttamatta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Keskustelu</servlet-name>
+        <url-pattern>/Keskustelu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KirjauduUlos</servlet-name>
+        <url-pattern>/KirjauduUlos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PoistaViesti</servlet-name>
+        <url-pattern>/PoistaViesti</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

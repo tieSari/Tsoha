@@ -1,3 +1,8 @@
+/*
+ * Luokka toimii kirjautumisnäkymän controllerina.
+ * Tätä servlettiä kutsutaan, kun mennään sovelluksen osoitteeseen SporttiFoorumi.
+ * 
+ */
 package SporttiFoorumi.Servletit;
 
 import java.io.IOException;
