@@ -2,7 +2,8 @@ package SporttiFoorumi.Tietokanta;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import javax.naming.Context;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -16,8 +17,12 @@ public class Yhteys {
             InitialContext cxt = new InitialContext();
             DataSource yhteysVarasto = (DataSource) cxt.lookup("java:/comp/env/jdbc/tietokanta");
             return yhteysVarasto.getConnection();
-        } catch (Exception e) {
 
+        } catch (SQLException e) {
+            Logger.getLogger(Yhteys.class.getName()).log(Level.SEVERE, null, e);
+
+        } catch (NamingException e) {
+            Logger.getLogger(Yhteys.class.getName()).log(Level.SEVERE, null, e);
         }
         return null;
 

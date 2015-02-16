@@ -2,8 +2,8 @@
 <Context antiJARLocking="true" path="/SporttiFoorumi">
     <Resource name="jdbc/tietokanta" auth="Container"
         type="javax.sql.DataSource" removeAbandoned="true"
-        removeAbandonedTimeout="30" maxActive="100"
-        maxIdle="30" maxWait="10000" username="sariraut"
+        removeAbandonedTimeout="30" maxActive="120"
+        maxIdle="40" maxWait="10000" username="sariraut"
         password="162510cc6279a04a"
         driverClassName="org.postgresql.Driver"
         url="jdbc:postgresql://localhost/sariraut" />

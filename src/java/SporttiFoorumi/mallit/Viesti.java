@@ -21,6 +21,7 @@ public class Viesti {
     private int ryhma;
     private int paaviesti;
     private boolean luettu;
+    private int lukijalkm;
 
     public Viesti() {
 
@@ -116,6 +117,45 @@ public class Viesti {
         this.luettu = luettu;
     }
 
+    public int getLukijalkm() {
+        return lukijalkm;
+    }
+
+    public void setLukijalkm(int lukijalkm) {
+        this.lukijalkm = lukijalkm;
+    }
+
+    public static int viestinLukijaLkm(int tunnus) throws SQLException {
+        String sql = "SELECT count (*) as lkm"
+                + " from JasenenLukematViestit"
+                + " where viestitunnus = ?";
+        int lkm = 0;
+        Connection yhteys = Yhteys.getYhteys();
+        if (yhteys == null) {
+            return lkm;
+        }
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        kysely.setInt(1, tunnus);
+        ResultSet tulokset = kysely.executeQuery();
+        if (tulokset.next()) {
+            lkm = tulokset.getInt("lkm");
+        }
+        try {
+            tulokset.close();
+        } catch (SQLException e) {
+        }
+        try {
+            kysely.close();
+        } catch (SQLException e) {
+        }
+        try {
+            yhteys.close();
+        } catch (SQLException e) {
+        }
+
+        return lkm;
+    }
+
     public static ArrayList<Viesti> etsiRyhmanViestit(int ryhmaTunnus, int kayttajaId) throws SQLException {
         String sql = "SELECT v.tunnus, otsikko, teksti, kirjoituspvm, kirjoittaja,"
                 + "etunimi,sukunimi, v.ryhma, paaviesti from Viesti v, jasen j"
@@ -143,6 +183,7 @@ public class Viesti {
             v.setTunnus(tulokset.getInt("tunnus"));
             v.setLuettu(onkoViestiLuettu(v.getTunnus(), kayttajaId));
             v.setKirjoittajaNimi(tulokset.getString("etunimi") + " " + tulokset.getString("sukunimi"));
+            v.setLukijalkm(viestinLukijaLkm(v.tunnus));
             viestit.add(v);
         }
         try {
@@ -241,6 +282,7 @@ public class Viesti {
             v.setTunnus(tulokset.getInt("tunnus"));
             v.setKirjoittajaNimi(tulokset.getString("etunimi") + " " + tulokset.getString("sukunimi"));
             v.setLuettu(onkoViestiLuettu(v.getTunnus(), kayttajaId));
+            v.setLukijalkm(viestinLukijaLkm(v.tunnus));
             viestit.add(v);
         }
         try {
@@ -280,11 +322,14 @@ public class Viesti {
         if (yhteys == null) {
             return false;
         }
+        boolean luettu = true;
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         kysely.setInt(1, viestitunnus);
         kysely.setInt(2, jasentunnus);
         ResultSet tulokset = kysely.executeQuery();
-        if(!tulokset.next()) return false;
+        if (!tulokset.next()) {
+            luettu = false;
+        }
         try {
             tulokset.close();
         } catch (SQLException e) {
@@ -298,7 +343,7 @@ public class Viesti {
         } catch (SQLException e) {
         }
 
-        return true;
+        return luettu;
     }
 
     public static Viesti etsiViesti(int tunnus) throws SQLException {
@@ -326,6 +371,7 @@ public class Viesti {
             v.setTeksti(tulokset.getString("teksti"));
             v.setTunnus(tulokset.getInt("tunnus"));
             v.setKirjoittajaNimi(tulokset.getString("etunimi") + " " + tulokset.getString("sukunimi"));
+            v.setLukijalkm(viestinLukijaLkm(v.tunnus));
         }
         try {
             tulokset.close();
@@ -341,6 +387,7 @@ public class Viesti {
         }
         return v;
     }
+
     public static void poistaViesti(int tunnus) throws NamingException, SQLException {
         if (Viesti.etsiViesti(tunnus) == null) {
             return;
@@ -362,7 +409,7 @@ public class Viesti {
         }
 
     }
-    
+
     public static void poistaViestiketju(int tunnus) throws NamingException, SQLException {
         if (Viesti.etsiViesti(tunnus) == null) {
             return;

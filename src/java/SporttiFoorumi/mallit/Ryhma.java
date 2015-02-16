@@ -58,11 +58,28 @@ public class Ryhma {
     }
 
     public static List<Ryhma> getRyhmatJaViestit(int kayttajaId) throws SQLException {
-       
+
         ArrayList<Ryhma> ryhmat = getRyhmat();
-        for(Ryhma ryhma:ryhmat)
-        {
-            ryhma.setViestit(Viesti.etsiRyhmanViestit(ryhma.getTunnus(),kayttajaId));
+        for (Ryhma ryhma : ryhmat) {
+            ryhma.setViestit(Viesti.etsiRyhmanViestit(ryhma.getTunnus(), kayttajaId));
+        }
+        return ryhmat;
+
+    }
+
+    public static List<Ryhma> filterRyhmatJaViestit(List<Ryhma> ryhmat, String filter) throws SQLException {
+
+        for (Ryhma ryhma : ryhmat) {
+            for (Viesti viesti : ryhma.getViestit()) {
+                if (!viesti.getKirjoittajaNimi().contains(filter)
+                        && !viesti.getOtsikko().contains(filter)
+                        && !viesti.getKirjoituspvm().toString().contains(filter)) {
+                    ryhma.getViestit().remove(viesti);
+                }
+                if (ryhma.getViestit().isEmpty()) {
+                    ryhmat.remove(ryhma);
+                }
+            }
         }
         return ryhmat;
 

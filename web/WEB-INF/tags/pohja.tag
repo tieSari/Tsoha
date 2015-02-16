@@ -33,7 +33,9 @@
                         </div>
                     </c:if>
                     <div class="col-md-2">
+                        <c:if test="${sessionScope.kirjautunut!=null}">
                         <a href="./KirjauduUlos"> Kirjaudu ulos</a>
+                        </c:if>
                     </div>
                 </div>
             </div>

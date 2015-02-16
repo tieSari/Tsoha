@@ -9,11 +9,14 @@ import SporttiFoorumi.mallit.Kayttaja;
 import SporttiFoorumi.mallit.Ryhma;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,7 +34,18 @@ public class Listaus extends GeneralServlet {
                 naytaJSP("kirjautuminen.jsp", request, response);
                 return;
             }
-            request.setAttribute("ryhmat", Ryhma.getRyhmatJaViestit(kirjautunut.getId()));
+            HttpSession session = request.getSession();
+            if (request.getAttribute("filter")==null) {
+                List<Ryhma> ryhmat = Ryhma.getRyhmatJaViestit(kirjautunut.getId());
+                request.setAttribute("ryhmat", ryhmat);
+                session.setAttribute("ryhmat", ryhmat);
+            }
+            else
+            {
+                String filter = request.getAttribute("filter").toString();
+                List<Ryhma> ryhmat = (List<Ryhma>)session.getAttribute("ryhmat");
+                request.setAttribute("ryhmat", Ryhma.filterRyhmatJaViestit(ryhmat, filter));
+            }
             naytaJSP("index.jsp", request, response);
 
         } catch (SQLException e) {

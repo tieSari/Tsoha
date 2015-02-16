@@ -9,10 +9,19 @@
 <t:pohja pageTitle="Kirjaudu">
 
     <form action="Kirjautuminen" method="POST">
-        Käyttäjänimi: <input type="text" name="username" value="${kayttaja}"/>
-        <p></p>
-        Salasana: <input type="password" name="password" />
-        <p></p>
-        <button type="submit">Kirjaudu</button>
+        <table>
+            <tr>
+                <td> Käyttäjänimi: </td>
+                <td><input type="text" name="username" value="${kayttaja}"/></td>
+            </tr>
+            <tr>
+                <td> Salasana: </td>
+                <td><input type="password" name="password" /></td>
+            </tr>
+            <tr>
+                <td></td> 
+                <td> <button type="submit">Kirjaudu</button></td>
+            <tr>
+        </table>
     </form>
 </t:pohja>
