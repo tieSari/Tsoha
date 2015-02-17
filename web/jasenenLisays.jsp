@@ -8,32 +8,31 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:pohja pageTitle="Jäsenen tiedot" rooli="${sessionScope.kirjautunut.rooli}">
     <ul class="nav nav-tabs">
-        <li><a href="jasenenLisays.jsp">Käyttäjän lisäys</a></li>
-        <li class="active"><a href="#">Käyttäjätietojen muokkaus</a></li>
+        <li><a href="./HaeKayttajat">Käyttäjän tietojen muokkaus</a></li>
+        <li class="active"><a href="#">Käyttäjän lisäys</a></li>
     </ul>
     <div class="panel panel-info">
         <div class="panel-heading">Käyttäjän tiedot </div>
         <div class="panel-body">
             <div >
-                <form action="PaivitaKayttaja" method="POST">
-                    <input type="hidden" value="${kayttaja.id}" name="id">
+                <form action="./Toteuttamatta" method="POST">
                     <table>
                         <tr>
 
-                            <td>Etunimi: </td><td><input type="text" value="${kayttaja.etunimi}" name="etunimi"></td>
+                            <td>Etunimi: </td><td><input type="text"  name="etunimi"></td>
 
                         </tr>
                         <tr>
-                            <td>Sukunimi: </td><td><input type="text"  value="${kayttaja.sukunimi}" name="sukunimi"></td>
+                            <td>Sukunimi: </td><td><input type="text"  name="sukunimi"></td>
                         </tr>
                         <tr>
-                            <td>Käyttäjätunnus:</td><td> <input type="text"  value="${kayttaja.tunnus}" name="tunnus"></td>
+                            <td>Käyttäjätunnus:</td><td> <input type="text" name="tunnus"></td>
                         </tr>
                         <tr>
-                            <td>Salasana: </td><td><input type="text"  value="${kayttaja.salasana}" name="salasana"></td>
+                            <td>Salasana: </td><td><input type="text"  name="salasana"></td>
                         </tr>
-                                                <tr>
-                            <td>Rooli: </td><td><input type="text"  value="${kayttaja.rooli}" name="rooli"></td>
+                        <tr>
+                            <td>Rooli: </td><td><input type="text" name="rooli"></td>
                         </tr>
                         <tr>
                             <td>
@@ -50,15 +49,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <button type="submit" class="btn btn-default">Päivitä tiedot</button>
+                                <button type="submit" class="btn btn-default">Tallenna</button>
                             </td>
 
                         </tr>
                     </table>
                 </form>
- <!--               <form action="PoistaKayttaja?${kayttaja.id}" method="POST">
-                    <button type="submit" class="btn btn-default">Poista käyttäjä</button>
-                </form> -->
             </div>
         </div>
     </div>

@@ -21,7 +21,7 @@ public class Viesti {
     private int ryhma;
     private int paaviesti;
     private boolean luettu;
-    private int lukijalkm;
+    private int lukijaLkm;
 
     public Viesti() {
 
@@ -117,12 +117,12 @@ public class Viesti {
         this.luettu = luettu;
     }
 
-    public int getLukijalkm() {
-        return lukijalkm;
+    public int getLukijaLkm() {
+        return lukijaLkm;
     }
 
-    public void setLukijalkm(int lukijalkm) {
-        this.lukijalkm = lukijalkm;
+    public void setLukijaLkm(int lukijalkm) {
+        this.lukijaLkm = lukijalkm;
     }
 
     public static int viestinLukijaLkm(int tunnus) throws SQLException {
@@ -183,7 +183,7 @@ public class Viesti {
             v.setTunnus(tulokset.getInt("tunnus"));
             v.setLuettu(onkoViestiLuettu(v.getTunnus(), kayttajaId));
             v.setKirjoittajaNimi(tulokset.getString("etunimi") + " " + tulokset.getString("sukunimi"));
-            v.setLukijalkm(viestinLukijaLkm(v.tunnus));
+            v.setLukijaLkm(viestinLukijaLkm(v.tunnus));
             viestit.add(v);
         }
         try {
@@ -282,7 +282,7 @@ public class Viesti {
             v.setTunnus(tulokset.getInt("tunnus"));
             v.setKirjoittajaNimi(tulokset.getString("etunimi") + " " + tulokset.getString("sukunimi"));
             v.setLuettu(onkoViestiLuettu(v.getTunnus(), kayttajaId));
-            v.setLukijalkm(viestinLukijaLkm(v.tunnus));
+            v.setLukijaLkm(viestinLukijaLkm(v.tunnus));
             viestit.add(v);
         }
         try {
@@ -371,7 +371,7 @@ public class Viesti {
             v.setTeksti(tulokset.getString("teksti"));
             v.setTunnus(tulokset.getInt("tunnus"));
             v.setKirjoittajaNimi(tulokset.getString("etunimi") + " " + tulokset.getString("sukunimi"));
-            v.setLukijalkm(viestinLukijaLkm(v.tunnus));
+            v.setLukijaLkm(viestinLukijaLkm(v.tunnus));
         }
         try {
             tulokset.close();

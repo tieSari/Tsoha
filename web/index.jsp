@@ -3,11 +3,16 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <t:pohja pageTitle="Etusivu" rooli="${sessionScope.kirjautunut.rooli}">
+
     <h3>Ajankohtaista&MediumSpace;<span class="glyphicon glyphicon-eye-open"></span></h3>
-    <span style="float:right;">
-        <a href="./Listaus?filter=filter.value"><span class="glyphicon glyphicon-eye-open"></span></a>
-        <input type="text" name="filter">
-    </span>
+    <form action="Listaus" method="POST">
+        <span style="float:right;">
+            <input type="text" name="filter">
+            <button type="submit">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </span>
+    </form>
     <table class="table table-striped table-condensed">
         <thead>
             <tr>

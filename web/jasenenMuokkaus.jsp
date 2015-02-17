@@ -4,7 +4,7 @@
 
 <t:pohja pageTitle="Jäsentietojen muokkaus" rooli="${sessionScope.kirjautunut.rooli}">
     <ul class="nav nav-tabs">
-        <li><a href="./Toteuttamatta">Käyttäjän lisäys</a></li>
+        <li><a href="jasenenLisays.jsp">Käyttäjän lisäys</a></li>
         <li class="active"><a href="#">Käyttäjätietojen muokkaus</a></li>
     </ul>
     <div class="panel panel-info">

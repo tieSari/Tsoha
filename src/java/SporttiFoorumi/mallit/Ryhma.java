@@ -67,18 +67,29 @@ public class Ryhma {
 
     }
 
-    public static List<Ryhma> filterRyhmatJaViestit(List<Ryhma> ryhmat, String filter) throws SQLException {
+    public static List<Ryhma> filterRyhmatJaViestit(List<Ryhma> ryhmat, String filter){
 
-        for (Ryhma ryhma : ryhmat) {
-            for (Viesti viesti : ryhma.getViestit()) {
-                if (!viesti.getKirjoittajaNimi().contains(filter)
-                        && !viesti.getOtsikko().contains(filter)
-                        && !viesti.getKirjoituspvm().toString().contains(filter)) {
-                    ryhma.getViestit().remove(viesti);
+        for (int j = 0; j < ryhmat.size(); j++) {
+            List<Viesti> viestit = ryhmat.get(j).getViestit();
+            int tunnus = 0;
+            for (int i = 0; i < viestit.size(); i++) {
+                if (viestit.get(i).getPaaviesti() == 0) {
+                    tunnus = viestit.get(i).getTunnus();
+                    if (!viestit.get(i).getKirjoittajaNimi().contains(filter)
+                            && !viestit.get(i).getOtsikko().contains(filter)
+                            && !viestit.get(i).getKirjoituspvm().toString().contains(filter)) {
+                        viestit.remove(viestit.get(i));
+                        i = 0;
+                        for (int k = 0; k < viestit.size(); k++) {
+                            if (viestit.get(k).getPaaviesti() == tunnus) {
+                                viestit.remove(viestit.get(k));
+                            }
+                        }
+                    }
                 }
-                if (ryhma.getViestit().isEmpty()) {
-                    ryhmat.remove(ryhma);
-                }
+            }
+            if (ryhmat.get(j).getViestit().isEmpty()) {
+                ryhmat.remove(ryhmat.get(j));
             }
         }
         return ryhmat;

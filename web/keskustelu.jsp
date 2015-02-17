@@ -29,7 +29,8 @@
                                         <div class="panel panel-info">
                                             <div class="panel-heading">
                                                 ${viesti.kirjoittajaNimi}&MediumSpace; ${viesti.kirjoituspvm}&MediumSpace; ${viesti.kirjoitusaika}
-                                                &MediumSpace; ${"lukijoita "+ viesti.lukijaLkm + " kpl"}
+                                                &MediumSpace;&MediumSpace;
+                                                lukijoita &thinsp;${viesti.lukijaLkm} &thinsp;kpl
                                                 <span style="float:right;">
                                                     <c:if test="${sessionScope.kirjautunut.rooli == 'yllapitaja' &&  viesti.paaviesti!=0}">
                                                         <a href="./PoistaViesti?tunnus=${viesti.tunnus}&paaviesti=${viesti.paaviesti}">poista viesti &MediumSpace;
