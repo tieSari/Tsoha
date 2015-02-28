@@ -26,6 +26,7 @@ public class TallennaViesti extends GeneralServlet {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.processRequest(request, response);
         try {
             Kayttaja kirjautunut = Kirjautunut(request);
             if (kirjautunut == null) {
@@ -39,9 +40,27 @@ public class TallennaViesti extends GeneralServlet {
             viesti.setKirjoittaja(kirjautunut.getId());
             viesti.setRyhma(Integer.parseInt(request.getParameter("ryhma")));
             viesti.setPaaviesti(Integer.parseInt(request.getParameter("paaviesti")));
+
+            //validoidaan vain uuden viestiketjun aloitusviestit
+            //vastausviesteissä ei ole validoitavaa=teksti saa olla tyhjä ja otsikko
+            //tulee pääviestiltä
+            if (viesti.getPaaviesti() == 0) {
+                String validoi = viesti.onkoKelvollinen(viesti);
+                if (validoi != null) {
+                    asetaVirhe(validoi, request);
+                    request.setAttribute("viesti", viesti);
+
+                    naytaJSP("uusiViestiKetju.jsp", request, response);
+                    return;
+                }
+            }
+
             viesti.lisaaViestiKantaan();
-  //jos viesti ei ole ketjun aloitusviesti, siirrytään keskusteluun, johon viesti
-  //on lisätty. Muussa tapauksessa siirrytään etusivun listaukseen.
+            Viesti.lisaaViestiLuettuhin(viesti.getTunnus(), kirjautunut.getId());
+            viesti.setLuettu(true);
+
+            //jos viesti ei ole ketjun aloitusviesti, siirrytään keskusteluun, johon viesti
+            //on lisätty. Muussa tapauksessa siirrytään etusivun listaukseen.
             if (viesti.getPaaviesti() != 0) {
                 HttpSession session = request.getSession();
                 session.setAttribute("tunnus", viesti.getPaaviesti());

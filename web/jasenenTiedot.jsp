@@ -8,7 +8,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:pohja pageTitle="Jäsenen tiedot" rooli="${sessionScope.kirjautunut.rooli}">
     <ul class="nav nav-tabs">
-        <li><a href="jasenenLisays.jsp">Käyttäjän lisäys</a></li>
+        <li><a href="./HaeKayttajanTiedot?lisays=true">Käyttäjän lisäys</a></li>
         <li class="active"><a href="#">Käyttäjätietojen muokkaus</a></li>
     </ul>
     <div class="panel panel-info">
@@ -32,7 +32,7 @@
                         <tr>
                             <td>Salasana: </td><td><input type="text"  value="${kayttaja.salasana}" name="salasana"></td>
                         </tr>
-                                                <tr>
+                        <tr>
                             <td>Rooli: </td><td><input type="text"  value="${kayttaja.rooli}" name="rooli"></td>
                         </tr>
                         <tr>
@@ -40,12 +40,11 @@
                                 Lisää ryhmät:
                             </td>
                             <td>
-                                <input list="aiheet" name="ryhma">
-                                <datalist id="aiheet">
+                                <select multiple name="ryhmat">
                                     <c:forEach var="ryhma" items="${ryhmat}">
                                         <option value="${ryhma.tunnus}" >${ryhma.nimi}</option>
                                     </c:forEach>
-                                </datalist>
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -56,9 +55,10 @@
                         </tr>
                     </table>
                 </form>
- <!--               <form action="PoistaKayttaja?${kayttaja.id}" method="POST">
+                <form action="PoistaKayttaja" method="POST">
+                    <input type="hidden" value="${kayttaja.id}" name="id">
                     <button type="submit" class="btn btn-default">Poista käyttäjä</button>
-                </form> -->
+                </form>
             </div>
         </div>
     </div>

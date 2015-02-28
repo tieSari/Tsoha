@@ -34,6 +34,7 @@ public class Kirjautuminen extends GeneralServlet {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.processRequest(request, response);
         try {
             //tähän lisään myöhemmin salasanan hashayksen (salausmetodit
             //tiedostossa PasswordHash.java

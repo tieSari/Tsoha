@@ -27,6 +27,7 @@ public class NaytaLoginSivu extends GeneralServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.processRequest(request, response);
          naytaJSP("kirjautuminen.jsp", request, response);
     }
 }

@@ -1,6 +1,6 @@
 /*
- * Luokkaa kutsutaan etusivun "aloita uusi keskustelu" -linkin kautta.
- * näyttää uuden ketjun luontinäkymän.
+ * Luokka toimii ryhmän tietojen muokkausnäkymän controllerina
+ * kutsuu Ryhma-malliluokan tietokantakyselymetodia
  * 
  */
 package SporttiFoorumi.Servletit;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author sariraut
  */
-public class UusiViestiketju extends GeneralServlet {
+public class HaeRyhmat extends GeneralServlet {
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -26,10 +26,10 @@ public class UusiViestiketju extends GeneralServlet {
         super.processRequest(request, response);
         try {
             request.setAttribute("ryhmat", Ryhma.getRyhmat());
-            naytaJSP("uusiViestiKetju.jsp", request,response);
+            naytaJSP("ryhmanMuokkaus.jsp", request,response);
 
         } catch (SQLException e) {
-            Logger.getLogger(UusiViestiketju.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(HaeRyhmat.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 }

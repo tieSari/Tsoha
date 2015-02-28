@@ -15,7 +15,6 @@ import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,6 +25,7 @@ public class PoistaViestiketju extends GeneralServlet {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.processRequest(request, response);
         try {
             Kayttaja kirjautunut = Kirjautunut(request);
             if (kirjautunut == null || !kirjautunut.getRooli().equals("yllapitaja")) {

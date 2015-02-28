@@ -12,12 +12,11 @@
         <div class="panel panel-info">
             <div class="panel-heading">Valitse aiheryhmä </div>
             <div class="panel-body">
-                <input list="aiheet" name="ryhma">
-                <datalist id="aiheet">
+                <select name="ryhma">
                     <c:forEach var="ryhma" items="${ryhmat}">
                         <option value="${ryhma.tunnus}" >${ryhma.nimi}</option>
                         </c:forEach>
-                </datalist>
+                </select>
             </div>
         </div>
 
@@ -26,11 +25,11 @@
             <div class="panel-body">
                 <div class="row">
                     <input hidden="true" name="paaviesti" value="0">
-                    Otsikko: <input type="text" name="otsikko">
+                    Otsikko: <input type="text" name="otsikko" value="${viesti.otsikko}">
                 </div>
                 <p></p>
                 <div class="row">
-                    <textarea cols="60" rows="8" name="teksti"></textarea>
+                    <textarea cols="60" rows="8" name="teksti" value="${viesti.teksti}"></textarea>
                 </div>
                 <div >
                     <button type="submit" class="btn btn-default">Lähetä</button>

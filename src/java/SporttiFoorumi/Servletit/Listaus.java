@@ -26,6 +26,7 @@ public class Listaus extends GeneralServlet {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.processRequest(request, response);
         try {
             Kayttaja kirjautunut = Kirjautunut(request);
             if (kirjautunut == null) {

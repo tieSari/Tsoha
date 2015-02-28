@@ -32,6 +32,21 @@ public class GeneralServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
+        if (session != null) {
+            Object virheViesti = session.getAttribute("virheViesti");
+
+            if (virheViesti != null) {
+                session.removeAttribute("virheViesti");
+                request.setAttribute("virheViesti", virheViesti);
+            }
+            Object infoViesti = session.getAttribute("infoViesti");
+
+            if (infoViesti != null) {
+                session.removeAttribute("infoViesti");
+                request.setAttribute("infoViesti", infoViesti);
+            }
+        }
     }
 
     public void naytaJSP(String jspName, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,10 +56,12 @@ public class GeneralServlet extends HttpServlet {
 
     public void asetaVirhe(String virhe, HttpServletRequest request) {
         request.setAttribute("virheViesti", virhe);
+        request.getSession().setAttribute("virheViesti", virhe);
     }
-    
-        public void asetaInfo(String ilmoitus, HttpServletRequest request) {
+
+    public void asetaInfo(String ilmoitus, HttpServletRequest request) {
         request.setAttribute("infoViesti", ilmoitus);
+        request.getSession().setAttribute("infoViesti", ilmoitus);
     }
 
     public Kayttaja Kirjautunut(HttpServletRequest request) {

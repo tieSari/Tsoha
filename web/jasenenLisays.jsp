@@ -15,36 +15,35 @@
         <div class="panel-heading">Käyttäjän tiedot </div>
         <div class="panel-body">
             <div >
-                <form action="./Toteuttamatta" method="POST">
+                <form action="./LisaaKayttaja" method="POST">
                     <table>
                         <tr>
 
-                            <td>Etunimi: </td><td><input type="text"  name="etunimi"></td>
+                            <td>Etunimi: </td><td><input type="text" value="${kayttaja.etunimi}" name="etunimi"></td>
 
                         </tr>
                         <tr>
-                            <td>Sukunimi: </td><td><input type="text"  name="sukunimi"></td>
+                            <td>Sukunimi: </td><td><input type="text" value="${kayttaja.sukunimi}" name="sukunimi"></td>
                         </tr>
                         <tr>
-                            <td>Käyttäjätunnus:</td><td> <input type="text" name="tunnus"></td>
+                            <td>Käyttäjätunnus:</td><td> <input type="text" value="${kayttaja.tunnus}" name="tunnus"></td>
                         </tr>
                         <tr>
-                            <td>Salasana: </td><td><input type="text"  name="salasana"></td>
+                            <td>Salasana: </td><td><input type="text" value="${kayttaja.salasana}" name="salasana"></td>
                         </tr>
                         <tr>
-                            <td>Rooli: </td><td><input type="text" name="rooli"></td>
+                            <td>Rooli: </td><td><input type="text" value="${kayttaja.rooli}" name="rooli"></td>
                         </tr>
                         <tr>
                             <td>
                                 Lisää ryhmät:
                             </td>
                             <td>
-                                <input list="aiheet" name="ryhma">
-                                <datalist id="aiheet">
+                                <select multiple name="ryhmat">
                                     <c:forEach var="ryhma" items="${ryhmat}">
-                                        <option value="${ryhma.tunnus}" >${ryhma.nimi}</option>
+                                        <option value="${ryhma.tunnus}"> <c:out value="${ryhma.nimi}"/></option>
                                     </c:forEach>
-                                </datalist>
+                                </select>
                             </td>
                         </tr>
                         <tr>

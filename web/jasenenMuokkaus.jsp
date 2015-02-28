@@ -4,7 +4,7 @@
 
 <t:pohja pageTitle="Jäsentietojen muokkaus" rooli="${sessionScope.kirjautunut.rooli}">
     <ul class="nav nav-tabs">
-        <li><a href="jasenenLisays.jsp">Käyttäjän lisäys</a></li>
+        <li><a href="./HaeKayttajanTiedot?lisays=true">Käyttäjän lisäys</a></li>
         <li class="active"><a href="#">Käyttäjätietojen muokkaus</a></li>
     </ul>
     <div class="panel panel-info">
@@ -15,12 +15,11 @@
                 <p>
                     Valitse muokattava käyttäjä:
 
-                    <input list="kayttajat" name="jasen">
-                    <datalist id="kayttajat">
+                    <select  name="jasen">
                         <c:forEach var="jasen" items="${kayttajat}">
-                            <option value="${jasen.id}"> ${jasen.etunimi}  ${jasen.sukunimi}</option>
+                            <option value="${jasen.id}"> <c:out value="${jasen.etunimi}"/>&thinsp; <c:out value="${jasen.sukunimi}"/></option>
                         </c:forEach>
-                    </datalist>
+                    </select>
                 </p>
                 <p></p>
                 <button type="submit" class="btn btn-default">Hae käyttäjän tiedot</button>

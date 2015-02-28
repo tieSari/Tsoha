@@ -125,6 +125,19 @@ public class Viesti {
         this.lukijaLkm = lukijalkm;
     }
 
+    public String onkoKelvollinen(Viesti viesti) {
+        if (viesti.getOtsikko().trim().equals("")) {
+            return "Anna viestille otsikko";
+        }
+        if (viesti.getTeksti().trim().equals("")) {
+            return "Kirjoita viesti tekstikenttään";
+        }
+        if (viesti.getRyhma() == 0) {
+            return "Valitse keskusteluryhmä";
+        }
+        return null;
+    }
+
     public static int viestinLukijaLkm(int tunnus) throws SQLException {
         String sql = "SELECT count (*) as lkm"
                 + " from JasenenLukematViestit"

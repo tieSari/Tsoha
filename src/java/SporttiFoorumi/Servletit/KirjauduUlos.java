@@ -5,11 +5,7 @@
  */
 package SporttiFoorumi.Servletit;
 
-import SporttiFoorumi.mallit.Ryhma;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +19,8 @@ public class KirjauduUlos extends GeneralServlet {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.processRequest(request, response);
+        
         request.getSession().removeAttribute("kirjautunut");
         naytaJSP("kirjautuminen.jsp", request,response);
     }

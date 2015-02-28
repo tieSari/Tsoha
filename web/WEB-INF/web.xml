@@ -56,6 +56,34 @@
         <servlet-name>PoistaViesti</servlet-name>
         <servlet-class>SporttiFoorumi.Servletit.PoistaViesti</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PoistaKayttaja</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.PoistaKayttaja</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LisaaKayttaja</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.LisaaKayttaja</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HaeRyhmat</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.HaeRyhmat</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LisaaRyhma</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.LisaaRyhma</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PoistaRyhma</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.PoistaRyhma</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HaeRyhmanTiedot</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.HaeRyhmanTiedot</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PaivitaRyhma</servlet-name>
+        <servlet-class>SporttiFoorumi.Servletit.PaivitaRyhma</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Listaus</servlet-name>
         <url-pattern>/Listaus</url-pattern>
@@ -111,6 +139,34 @@
     <servlet-mapping>
         <servlet-name>PoistaViesti</servlet-name>
         <url-pattern>/PoistaViesti</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PoistaKayttaja</servlet-name>
+        <url-pattern>/PoistaKayttaja</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LisaaKayttaja</servlet-name>
+        <url-pattern>/LisaaKayttaja</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HaeRyhmat</servlet-name>
+        <url-pattern>/HaeRyhmat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LisaaRyhma</servlet-name>
+        <url-pattern>/LisaaRyhma</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PoistaRyhma</servlet-name>
+        <url-pattern>/PoistaRyhma</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HaeRyhmanTiedot</servlet-name>
+        <url-pattern>/HaeRyhmanTiedot</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaivitaRyhma</servlet-name>
+        <url-pattern>/PaivitaRyhma</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

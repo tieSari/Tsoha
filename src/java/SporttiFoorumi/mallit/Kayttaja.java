@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-public class Kayttaja {
+public class Kayttaja implements Comparable<Kayttaja> {
 
     private int id;
     private String tunnus;
@@ -15,6 +15,7 @@ public class Kayttaja {
     private String rooli;
     private String etunimi;
     private String sukunimi;
+    private boolean selected;
 
     public Kayttaja() {
 
@@ -77,6 +78,36 @@ public class Kayttaja {
         this.sukunimi = sukunimi;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public String onkoKelvollinen(Kayttaja kayttaja) {
+        if (kayttaja.getEtunimi().trim().equals("")) {
+            return "Anna käyttäjän etunimi";
+        }
+        if (kayttaja.getSukunimi().trim().equals("")) {
+            return "Anna käyttäjän sukunimi";
+        }
+        if (kayttaja.getTunnus().trim().equals("")) {
+            return "Anna käyttäjän tunnus";
+        }
+        if (kayttaja.getSalasana().trim().equals("")) {
+            return "Anna käyttäjän salasana";
+        }
+        if (kayttaja.getSalasana().trim().length() < 6) {
+            return "Salasanan on oltava vähintään 6 merkkiä pitkä";
+        }
+        if (!kayttaja.rooli.equals("kayttaja") && !kayttaja.rooli.equals("yllapitaja")) {
+            return "Anna käyttäjän rooli: kayttaja tai yllapitaja";
+        }
+        return null;
+    }
+
     public static Kayttaja etsiKayttajaTunnuksilla(String kayttaja, String salasana) throws SQLException {
         String sql = "SELECT tunnus,kayttajatunnus, salasana, rooli, etunimi, sukunimi from Jasen where kayttajatunnus = ? AND salasana = ?";
         Connection yhteys = Yhteys.getYhteys();
@@ -115,7 +146,7 @@ public class Kayttaja {
     }
 
     public static List<Kayttaja> getKayttajat() throws SQLException {
-        String sql = "SELECT tunnus,kayttajatunnus, salasana, rooli, etunimi, sukunimi from jasen";
+        String sql = "SELECT tunnus,kayttajatunnus, salasana, rooli, etunimi, sukunimi from jasen order by sukunimi";
         Connection yhteys = Yhteys.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
@@ -158,7 +189,7 @@ public class Kayttaja {
 
         Kayttaja k = null;
         tulokset.next();
-        
+
         k = new Kayttaja();
         k.setId(tulokset.getInt("tunnus"));
         k.setTunnus(tulokset.getString("kayttajatunnus"));
@@ -166,7 +197,7 @@ public class Kayttaja {
         k.setRooli(tulokset.getString("rooli"));
         k.setEtunimi(tulokset.getString("etunimi"));
         k.setSukunimi(tulokset.getString("sukunimi"));
-        
+
         try {
             tulokset.close();
         } catch (SQLException e) {
@@ -183,7 +214,7 @@ public class Kayttaja {
         return k;
     }
 
-    public static void paivitaKayttaja(Kayttaja kayttaja) throws SQLException {
+    public static void paivitaKayttaja(Kayttaja kayttaja, int[] ryhmat) throws SQLException {
         String sql = "UPDATE jasen SET etunimi = ?, sukunimi = ?, salasana = ? , rooli = ?"
                 + " , kayttajatunnus = ? WHERE tunnus = ?";
         Connection yhteys = Yhteys.getYhteys();
@@ -197,6 +228,11 @@ public class Kayttaja {
 
         int tulos = kysely.executeUpdate();
 
+        if (tulos == 1 && ryhmat != null) {
+            Ryhma.poistaJasenenRyhmat(kayttaja.getId());
+            Ryhma.lisaaJasenenRyhmat(ryhmat, kayttaja.getId());
+        }
+
         try {
             kysely.close();
         } catch (SQLException e) {
@@ -206,4 +242,109 @@ public class Kayttaja {
         } catch (SQLException e) {
         }
     }
+
+    public int lisaaKayttaja() throws SQLException {
+        String sql = "INSERT into jasen(etunimi, sukunimi, salasana,rooli, kayttajatunnus) values(?,?,?,?,?) RETURNING tunnus ";
+        Connection yhteys = Yhteys.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        kysely.setString(1, this.getEtunimi());
+        kysely.setString(2, this.getSukunimi());
+        kysely.setString(3, this.getSalasana());
+        kysely.setString(4, this.getRooli());
+        kysely.setString(5, this.getTunnus());
+
+        ResultSet ids = kysely.executeQuery();
+        ids.next();
+
+        this.setId(ids.getInt(1));
+
+        try {
+            ids.close();
+        } catch (SQLException e) {
+        }
+        try {
+            kysely.close();
+        } catch (SQLException e) {
+        }
+        try {
+            yhteys.close();
+        } catch (SQLException e) {
+        }
+        return this.getId();
+    }
+
+    public static void poistaKayttaja(int tunnus) throws SQLException {
+        Ryhma.poistaJasenenRyhmat(tunnus);
+        String sql = "DELETE from jasen WHERE tunnus = ?";
+        Connection yhteys = Yhteys.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        kysely.setInt(1, tunnus);
+
+        int tulos = kysely.executeUpdate();
+
+        try {
+            kysely.close();
+        } catch (SQLException e) {
+        }
+        try {
+            yhteys.close();
+        } catch (SQLException e) {
+        }
+    }
+
+    public static ArrayList<Kayttaja> etsiRyhmanKayttajat(int ryhmaTunnus) throws SQLException {
+        String sql = "SELECT tunnus,etunimi,sukunimi from jasen j, ryhmanjasenet r"
+                + " where r.ryhmatunnus = ? and j.tunnus=r.jasentunnus order by sukunimi asc";
+        Connection yhteys = Yhteys.getYhteys();
+        if (yhteys == null) {
+            return null;
+        }
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        kysely.setInt(1, ryhmaTunnus);
+        ResultSet tulokset = kysely.executeQuery();
+
+        ArrayList<Kayttaja> kayttajat = new ArrayList();
+
+        while (tulokset.next()) {
+            Kayttaja k = new Kayttaja();
+            k.setEtunimi(tulokset.getString("etunimi"));
+            k.setSukunimi(tulokset.getString("sukunimi"));
+            k.setId(tulokset.getInt("tunnus"));
+            kayttajat.add(k);
+        }
+        try {
+            tulokset.close();
+        } catch (SQLException e) {
+        }
+        try {
+            kysely.close();
+        } catch (SQLException e) {
+        }
+        try {
+            yhteys.close();
+        } catch (SQLException e) {
+        }
+        return kayttajat;
+    }
+
+    @Override
+    public int compareTo(Kayttaja o) {
+        return this.getId() - o.getId();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if ((Kayttaja) obj != null) {
+            return this.getId() == ((Kayttaja) obj).getId();
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 43 * hash + this.id;
+        return hash;
+    }
+
 }

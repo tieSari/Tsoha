@@ -23,6 +23,7 @@ public class HaeKayttajat extends GeneralServlet {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.processRequest(request, response);
         try {
             request.setAttribute("kayttajat", Kayttaja.getKayttajat());
             naytaJSP("jasenenMuokkaus.jsp", request,response);
