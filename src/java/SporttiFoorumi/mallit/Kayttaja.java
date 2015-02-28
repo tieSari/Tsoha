@@ -90,14 +90,26 @@ public class Kayttaja implements Comparable<Kayttaja> {
         if (kayttaja.getEtunimi().trim().equals("")) {
             return "Anna käyttäjän etunimi";
         }
+        if (kayttaja.getEtunimi().length() > 30) {
+            return "Kentän etunimi max. pituus 30 merkkiä";
+        }
         if (kayttaja.getSukunimi().trim().equals("")) {
             return "Anna käyttäjän sukunimi";
+        }
+        if (kayttaja.getSukunimi().length() > 50) {
+            return "Kentän sukunimi max. pituus 50 merkkiä";
         }
         if (kayttaja.getTunnus().trim().equals("")) {
             return "Anna käyttäjän tunnus";
         }
+        if (kayttaja.getTunnus().length() > 50) {
+            return "Kentän tunnus max. pituus 50 merkkiä";
+        }
         if (kayttaja.getSalasana().trim().equals("")) {
             return "Anna käyttäjän salasana";
+        }
+        if (kayttaja.getSalasana().length() > 15) {
+            return "Kentän salasana max. pituus 15 merkkiä";
         }
         if (kayttaja.getSalasana().trim().length() < 6) {
             return "Salasanan on oltava vähintään 6 merkkiä pitkä";

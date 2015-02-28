@@ -65,12 +65,10 @@ public class LisaaKayttaja extends GeneralServlet {
                 request.setAttribute("kayttaja", kayttaja);
                 asetaInfo("Käyttäjä " + kayttaja.getEtunimi() + " lisätty onnistuneesti.", request);
                 response.sendRedirect("HaeKayttajat");
-                //naytaJSP("jasenenMuokkaus.jsp", request, response);
             } else {
                 asetaVirhe("Käyttäjän lisäys ei onnistunut.", request);
                 naytaJSP("jasenenLisays.jsp", request, response);
             }
-            //response.sendRedirect("HaeKayttajanTiedot");
 
         } catch (SQLException e) {
             Logger.getLogger(LisaaKayttaja.class.getName()).log(Level.SEVERE, null, e);

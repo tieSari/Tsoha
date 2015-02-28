@@ -27,6 +27,7 @@ public class TallennaViesti extends GeneralServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         super.processRequest(request, response);
+        request.getSession().removeAttribute("teksti");
         try {
             Kayttaja kirjautunut = Kirjautunut(request);
             if (kirjautunut == null) {
@@ -41,16 +42,25 @@ public class TallennaViesti extends GeneralServlet {
             viesti.setRyhma(Integer.parseInt(request.getParameter("ryhma")));
             viesti.setPaaviesti(Integer.parseInt(request.getParameter("paaviesti")));
 
-            //validoidaan vain uuden viestiketjun aloitusviestit
-            //vastausviesteissä ei ole validoitavaa=teksti saa olla tyhjä ja otsikko
-            //tulee pääviestiltä
+            String validoi = null;
             if (viesti.getPaaviesti() == 0) {
-                String validoi = viesti.onkoKelvollinen(viesti);
-                if (validoi != null) {
-                    asetaVirhe(validoi, request);
-                    request.setAttribute("viesti", viesti);
+                validoi = viesti.onkoKelvollinen(viesti);
+            } else {
+                if (viesti.getTeksti().length() > 250) {
+                    validoi = "Kentän teksti max. pituus 250 merkkiä";
+                }
+            }
+            if (validoi != null) {
+                asetaVirhe(validoi, request);
+                request.setAttribute("viesti", viesti);
 
+                if (viesti.getPaaviesti() == 0) {
                     naytaJSP("uusiViestiKetju.jsp", request, response);
+                    return;
+                } else {
+                    request.getSession().setAttribute("tunnus", viesti.getPaaviesti());
+                    request.getSession().setAttribute("teksti", viesti.getTeksti());
+                    response.sendRedirect("Keskustelu");
                     return;
                 }
             }

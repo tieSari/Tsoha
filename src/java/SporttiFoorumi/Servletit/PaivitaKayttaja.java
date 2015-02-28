@@ -62,7 +62,7 @@ public class PaivitaKayttaja extends GeneralServlet {
             request.setAttribute("kayttaja", kayttaja);
             request.getSession().setAttribute("jasen", kayttaja.getId());
             asetaInfo("Käyttäjän tiedot päivitetty onnistuneesti.", request);
-            //naytaJSP("jasenenTiedot.jsp", request, response);
+
             response.sendRedirect("HaeKayttajanTiedot");
 
         } catch (SQLException e) {

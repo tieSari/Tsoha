@@ -129,8 +129,14 @@ public class Viesti {
         if (viesti.getOtsikko().trim().equals("")) {
             return "Anna viestille otsikko";
         }
+        if (viesti.getOtsikko().length() > 50) {
+            return "Kentän otsikko max. pituus 50 merkkiä";
+        }
         if (viesti.getTeksti().trim().equals("")) {
             return "Kirjoita viesti tekstikenttään";
+        }
+        if (viesti.getTeksti().length() > 250) {
+            return "Kentän teksti max. pituus 250 merkkiä";
         }
         if (viesti.getRyhma() == 0) {
             return "Valitse keskusteluryhmä";

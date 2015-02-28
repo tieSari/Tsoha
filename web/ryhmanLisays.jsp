@@ -23,7 +23,7 @@
                         </tr>
                         <tr>
                             <td>Kuvaus: </td><td>
-                                <textarea cols="60" rows="8" value="${ryhma.kuvaus}" name="kuvaus"></textarea></td>
+                                <textarea cols="50" rows="5" name="kuvaus">${ryhma.kuvaus}</textarea></td>
                         </tr>
                         <tr>
                             <td>

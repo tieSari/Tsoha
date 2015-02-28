@@ -70,6 +70,12 @@ public class Ryhma {
         if (ryhma.getNimi().trim().equals("")) {
             return "Anna ryhmän nimi";
         }
+        if (ryhma.getNimi().length() > 50) {
+            return "Kentän nimi max. pituus 50 merkkiä";
+        }
+        if (ryhma.getKuvaus().length() > 250) {
+            return "Kentän kuvaus max. pituus 250 merkkiä";
+        }
         return null;
     }
 

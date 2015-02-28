@@ -29,7 +29,7 @@
                 </div>
                 <p></p>
                 <div class="row">
-                    <textarea cols="60" rows="8" name="teksti" value="${viesti.teksti}"></textarea>
+                    <textarea cols="50" rows="5" name="teksti">${viesti.teksti}</textarea>
                 </div>
                 <div >
                     <button type="submit" class="btn btn-default">Lähetä</button>

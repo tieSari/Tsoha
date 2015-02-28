@@ -39,11 +39,9 @@ public class PoistaKayttaja extends GeneralServlet {
                 asetaVirhe("Käyttäjän poistaminen ei onnistunut.", request);
             }
             response.sendRedirect("HaeKayttajat");
-           // naytaJSP("jasenenMuokkaus.jsp", request, response);
         } catch (SQLException e) {
             Logger.getLogger(PoistaKayttaja.class.getName()).log(Level.SEVERE, null, e);
             asetaVirhe("Käyttäjän poistaminen ei onnistunut.", request);
-            // response.sendRedirect("HaeKayttajat");
             naytaJSP("jasenenMuokkaus.jsp", request, response);
         }
     }

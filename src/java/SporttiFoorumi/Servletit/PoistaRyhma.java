@@ -7,7 +7,6 @@ package SporttiFoorumi.Servletit;
 
 import SporttiFoorumi.mallit.Kayttaja;
 import SporttiFoorumi.mallit.Ryhma;
-import SporttiFoorumi.mallit.Viesti;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -46,12 +45,10 @@ public class PoistaRyhma extends GeneralServlet {
         } catch (SQLException e) {
             Logger.getLogger(PoistaRyhma.class.getName()).log(Level.SEVERE, null, e);
             asetaVirhe("Ryhmän poistaminen ei onnistunut.", request);
-            // response.sendRedirect("HaeKayttajat");
             naytaJSP("ryhmanMuokkaus.jsp", request, response);
         } catch (IOException e) {
             Logger.getLogger(PoistaRyhma.class.getName()).log(Level.SEVERE, null, e);
             asetaVirhe("Ryhmän poistaminen ei onnistunut.", request);
-            // response.sendRedirect("HaeKayttajat");
             naytaJSP("ryhmanMuokkaus.jsp", request, response);
         }
 

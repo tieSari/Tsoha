@@ -55,7 +55,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">Lisää viesti ketjuun</div>
     <div class="panel-body">
-        <textarea cols="60" rows="8" name="teksti"></textarea>
+        <textarea cols="50" rows="5" name="teksti">${sessionScope.teksti}</textarea>
     </div>
     <div >
         <button type="submit" class="btn btn-default">Lähetä</button>

@@ -60,10 +60,8 @@ public class PaivitaRyhma extends GeneralServlet {
             }
             Ryhma.paivitaRyhma(ryhma, tunnukset);
 
-            //request.setAttribute("ryhma", ryhma);
             session.setAttribute("ryhma", ryhma.getTunnus());
             asetaInfo("Ryhman tiedot päivitetty onnistuneesti.", request);
-            //naytaJSP("ryhmanTiedot.jsp", request, response);
             response.sendRedirect("HaeRyhmanTiedot");
 
         } catch (SQLException e) {
